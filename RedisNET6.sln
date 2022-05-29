@@ -1,0 +1,72 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.1.32328.378
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RedisExtensionsCaching", "RedisNET6\RedisExtensionsCaching.csproj", "{084CA4BB-73E1-4B53-8C30-941415D21EF6}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BenchmarkHandler", "BenchmarkHandler\BenchmarkHandler.csproj", "{F46EFF28-23C3-4F99-80BF-1E5D71C6BC2A}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StackExchangeRedis", "StackExchangeRedis\StackExchangeRedis.csproj", "{71564CD7-01DA-4A01-80D0-3652E96015BA}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RedisDateType", "RedisStackExchangeNET6\RedisDateType.csproj", "{A0424F0C-4800-4C71-B6CC-2E45908A647F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Docker", "Docker", "{CA4A7740-7907-425B-8CF4-7C0D4FB03378}"
+	ProjectSection(SolutionItems) = preProject
+		docker-compose.yml = docker-compose.yml
+	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RedisChatApp", "SimpleChatApp\RedisChatApp.csproj", "{FF98E18F-F68B-4198-97DA-D03637BBB2DB}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SessionManagement", "dist-session-management\SessionManagement.csproj", "{F1C4D346-EBEF-4D71-B839-51A727357FC4}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RediusGeo", "RediusGeo\RediusGeo.csproj", "{CB3100B2-A9A2-44D0-92C9-10F739177E2A}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RedisTransactions", "RedisTransactions\RedisTransactions.csproj", "{10DB4A96-6C30-4BBB-AE7F-A85A9BDA870F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{084CA4BB-73E1-4B53-8C30-941415D21EF6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{084CA4BB-73E1-4B53-8C30-941415D21EF6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{084CA4BB-73E1-4B53-8C30-941415D21EF6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{084CA4BB-73E1-4B53-8C30-941415D21EF6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F46EFF28-23C3-4F99-80BF-1E5D71C6BC2A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F46EFF28-23C3-4F99-80BF-1E5D71C6BC2A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F46EFF28-23C3-4F99-80BF-1E5D71C6BC2A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F46EFF28-23C3-4F99-80BF-1E5D71C6BC2A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{71564CD7-01DA-4A01-80D0-3652E96015BA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{71564CD7-01DA-4A01-80D0-3652E96015BA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{71564CD7-01DA-4A01-80D0-3652E96015BA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{71564CD7-01DA-4A01-80D0-3652E96015BA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A0424F0C-4800-4C71-B6CC-2E45908A647F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A0424F0C-4800-4C71-B6CC-2E45908A647F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A0424F0C-4800-4C71-B6CC-2E45908A647F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A0424F0C-4800-4C71-B6CC-2E45908A647F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FF98E18F-F68B-4198-97DA-D03637BBB2DB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FF98E18F-F68B-4198-97DA-D03637BBB2DB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FF98E18F-F68B-4198-97DA-D03637BBB2DB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FF98E18F-F68B-4198-97DA-D03637BBB2DB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F1C4D346-EBEF-4D71-B839-51A727357FC4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F1C4D346-EBEF-4D71-B839-51A727357FC4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F1C4D346-EBEF-4D71-B839-51A727357FC4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F1C4D346-EBEF-4D71-B839-51A727357FC4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CB3100B2-A9A2-44D0-92C9-10F739177E2A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CB3100B2-A9A2-44D0-92C9-10F739177E2A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CB3100B2-A9A2-44D0-92C9-10F739177E2A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CB3100B2-A9A2-44D0-92C9-10F739177E2A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{10DB4A96-6C30-4BBB-AE7F-A85A9BDA870F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{10DB4A96-6C30-4BBB-AE7F-A85A9BDA870F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{10DB4A96-6C30-4BBB-AE7F-A85A9BDA870F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{10DB4A96-6C30-4BBB-AE7F-A85A9BDA870F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {56720BBB-224D-442A-A689-6A65060101BC}
+	EndGlobalSection
+EndGlobal

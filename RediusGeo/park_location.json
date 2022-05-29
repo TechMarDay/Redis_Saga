@@ -1,0 +1,50 @@
+{
+
+  "features": [
+    {
+      "attributes": {
+        "NAME": "Cong vien Lang Hoa"
+      },
+      "geometry": {
+        "x": 106.65616647559237,
+        "y": 10.841914313054758
+      }
+    },
+    {
+      "attributes": {
+        "NAME": "Cong vien Gia Dinh"
+      },
+      "geometry": {
+        "x": 106.6743543013216,
+        "y": 10.811468768280278
+      }
+    },
+    {
+      "attributes": {
+        "NAME": "Cong vien 23/9"
+      },
+      "geometry": {
+        "x": 106.69209751111369,
+        "y": 10.768969530548555
+      }
+    },
+    {
+      "attributes": {
+        "NAME": "Cong vien Hoang Van Thu"
+      },
+      "geometry": {
+        "x": 106.66469112784887,
+        "y": 10.802060048626691
+      }
+    },
+    {
+      "attributes": {
+        "NAME": "Cong vien Le Van Tam"
+      },
+      "geometry": {
+        "x": 106.6937332669353,
+        "y": 10.788199088380777
+      }
+    }
+  ]
+}
