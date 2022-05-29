@@ -22,4 +22,9 @@
     <Folder Include="Migrations\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Include="RedisChatApp.csproj" />
+    <None Include="RedisDateType.csproj" />
+  </ItemGroup>
+
 </Project>
