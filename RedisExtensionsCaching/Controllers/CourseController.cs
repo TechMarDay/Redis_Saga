@@ -15,7 +15,9 @@ namespace RedisExtensionsCaching.Controllers
         private readonly MyDbContext _dbContext;
         private readonly IConfiguration _configuration;
         private readonly IDistributedCache _cache;
-        public CourseController(MyDbContext context, IConfiguration configuration, IDistributedCache cache)
+        public CourseController(MyDbContext context, 
+            IConfiguration configuration, 
+            IDistributedCache cache)
         {
             _dbContext = context;
             _configuration = configuration;
@@ -42,48 +44,37 @@ namespace RedisExtensionsCaching.Controllers
             return Ok();
         }
 
+        //https://localhost:7226/api/Course/GetCourseByAuthorWithCache/author2
         [HttpGet]
-        [Route("GetAll/{authorId}/{enableCache}")]
-        public async Task<List<Course>> GetAll(string authorId, bool enableCache)
+        [Route("GetCourseByAuthorWithCache/{authorId}")]
+        public async Task<List<Course>> GetCourseByAuthorWithCache(string authorId)
         {
-            if (!enableCache)
-            {
-                return await _dbContext.Courses
-                    .Where(x => x.AuthorId == authorId)
-                    .OrderByDescending(x => x.Id).ToListAsync();
-            }
-
             var cacheKey = authorId;
-            // Trying to get data from the Redis cache
             byte[] cachedData = await _cache.GetAsync(cacheKey);
             var courses = new List<Course>();
             if (cachedData != null)
             {
-                // If the data is found in the cache, encode and deserialize cached data.
                 var cachedDataString = Encoding.UTF8.GetString(cachedData);
                 courses = JsonSerializer.Deserialize<List<Course>>(cachedDataString);
             }
             else
             {
-                // If the data is not found in the cache, then fetch data from database
                 courses = await _dbContext.Courses
                     .Where(x => x.AuthorId == authorId)
                     .OrderByDescending(x => x.Id).ToListAsync();
-
-                // Serializing the data
-                string cachedDataString = JsonSerializer.Serialize(courses);
-                var dataToCache = Encoding.UTF8.GetBytes(cachedDataString);
-
-                // Setting up the cache options
-                //DistributedCacheEntryOptions options = new DistributedCacheEntryOptions()
-                //    .SetAbsoluteExpiration(DateTime.Now.AddMinutes(5))
-                //    .SetSlidingExpiration(TimeSpan.FromMinutes(3));
-
-                // Add the data into the cache
+                var dataToCache = Encoding.UTF8.GetBytes(JsonSerializer.Serialize(courses));
                 await _cache.SetAsync(cacheKey, dataToCache);
             }
-
             return courses;
+        }
+
+        //https://localhost:7226/api/Course/GetCourseByAuthorWithoutCache/author2
+        [HttpGet]
+        [Route("GetCourseByAuthorWithoutCache/{authorId}")]
+        public async Task<List<Course>> GetCourseByAuthorWithoutCache(string authorId)
+        {
+            return await _dbContext.Courses
+                .Where(x => x.AuthorId == authorId).ToListAsync();
         }
     }
 }

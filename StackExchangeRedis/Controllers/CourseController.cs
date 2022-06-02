@@ -22,41 +22,41 @@ namespace StackExchangeRedis.Controllers
             _redis = redis;
         }
 
+        //https://localhost:7097/api/Course/GetCourseByAuthorWithCache/author2
         [HttpGet]
-        [Route("GetAll/{authorId}/{enableCache}")]
-        public async Task<List<Course>?> GetAll(string authorId, bool enableCache)
+        [Route("GetCourseByAuthorWithCache/{authorId}")]
+        public async Task<List<Course>?> GetCourseByAuthorWithCache(string authorId)
         {
-            if (!enableCache)
-            {
-                return await _dbContext.Courses
-                    .Where(x => x.AuthorId == authorId)
-                    .OrderByDescending(x => x.Id).ToListAsync();
-            }
-
-            var db = _redis.GetDatabase();
-            var cacheKey = authorId;
+            var redisDb = _redis.GetDatabase();
             var courses = new List<Course>();
-            var exists = await db.KeyExistsAsync(authorId);
+            var exists = await redisDb.KeyExistsAsync(authorId);
             if (exists)
             {
-                var cachedData = await db.StringGetAsync(cacheKey);
+                var cachedData = await redisDb.StringGetAsync(authorId);
                 var coursesdata = JsonConvert.DeserializeObject<IEnumerable<Course>>(cachedData);
                 return coursesdata?.ToList();
             }
             else
             {
-                // If the data is not found in the cache, then fetch data from database
                 courses = await _dbContext.Courses
                     .Where(x => x.AuthorId == authorId)
                     .OrderByDescending(x => x.Id).ToListAsync();
-
-                // Serializing the data
-                db.StringSet(authorId,
-                                    JsonConvert.SerializeObject(courses),
-                                    expiry: TimeSpan.FromSeconds(60));
+                await redisDb.StringSetAsync(authorId,
+                                    JsonConvert.SerializeObject(courses));
+                //expiry: TimeSpan.FromSeconds(60)
             }
 
             return courses;
+        }
+
+        //https://localhost:7097/api/Course/GetCourseByAuthorWithoutCache/author2
+        [HttpGet]
+        [Route("GetCourseByAuthorWithoutCache/{authorId}")]
+        public async Task<List<Course>?> GetCourseByAuthorWithoutCache(string authorId)
+        {
+            return await _dbContext.Courses
+                .Where(x => x.AuthorId == authorId)
+                .OrderByDescending(x => x.Id).ToListAsync();
         }
     }
 }

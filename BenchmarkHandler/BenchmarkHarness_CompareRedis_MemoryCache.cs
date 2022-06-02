@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace BenchmarkHandler
 {
-    public class BenchmarkHarness
+    public class BenchmarkHarness_CompareRedis_MemoryCache
     {
         [Params(5, 100)]
         public int IterationCount;
@@ -16,14 +16,13 @@ namespace BenchmarkHandler
         private static readonly HttpClient client = new HttpClient();
 
         [Benchmark]
-        public async Task GetCourseWithoutRedisCacheAsync()
+        public async Task GetCourseWithoutCacheAsync()
         {
             client.DefaultRequestHeaders.Accept.Clear();
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
             for (int i = 0; i < IterationCount; i++)
             {
-                await client.GetAsync(@"https://localhost:7226/api/Course/GetAll/author2/false");
-                //await client.GetAsync(@"https://localhost:7097/api/Course/GetAll/author2/false");
+                await client.GetAsync(@"https://localhost:7097/api/Course/GetCourseByAuthorWithoutCache/author2");
             }
         }
 
@@ -34,10 +33,19 @@ namespace BenchmarkHandler
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
             for (int i = 0; i < IterationCount; i++)
             {
-                await client.GetAsync(@"https://localhost:7226/api/Course/GetAll/author2/true");
-                //await client.GetAsync(@"https://localhost:7097/api/Course/GetAll/author2/true");
+                await client.GetAsync(@"https://localhost:7097/api/Course/GetCourseByAuthorWithCache/author2");
             }
         }
 
+        [Benchmark]
+        public async Task GetCourseWithMemoryCacheAsync()
+        {
+            client.DefaultRequestHeaders.Accept.Clear();
+            client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+            for (int i = 0; i < IterationCount; i++)
+            {
+                await client.GetAsync(@"https://localhost:7082/api/Course/GetCourseByAuthorWithCache/author2");
+            }
+        }
     }
 }

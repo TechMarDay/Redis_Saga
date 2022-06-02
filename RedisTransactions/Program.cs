@@ -16,10 +16,10 @@ redis.KeyDelete(gammaKey);
 
 var trans = redis.CreateTransaction();
 
+
 trans.StringSetAsync(alphaKey, "JS");
 trans.StringSetAsync(betaKey, "C#");
 var exec = trans.ExecuteAsync();
-
 var result = redis.Wait(exec);
 var alphaValue = redis.StringGet(alphaKey);
 var betaValue = redis.StringGet(betaKey);
@@ -49,4 +49,5 @@ gammaValue = redis.StringGet(gammaKey);
 
 //value is still 1 and result is false
 Console.WriteLine($"Gamma key is {gammaValue} and result is {result}");
+
 Console.ReadKey();

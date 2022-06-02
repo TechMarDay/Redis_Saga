@@ -22,7 +22,7 @@ Console.WriteLine("Current list keys: {0}", JsonConvert.SerializeObject(allKeys)
 //Delete all the keys of the database.
 await server.FlushDatabaseAsync();
 
-//String
+//String 512MB
 await db.StringSetAsync("Course_CSharp", "C# from zero to hero",
     expiry: TimeSpan.FromMinutes(2));
 var courseValue = await db.StringGetAsync("Course_CSharp");
@@ -75,8 +75,7 @@ await db.SortedSetAddAsync("RankerUsers", new[]
                 new SortedSetEntry("User_1", 1),
                 new SortedSetEntry("User_3",4),
                 new SortedSetEntry("User_2", 3),
-                new SortedSetEntry("User_4", 2),
-                //new SortedSetEntry( "Yukihiro Matsumoto", 5),
+                new SortedSetEntry("User_4", 2)
             });
 var sortedSet = await db.SortedSetRangeByRankAsync("RankerUsers");
 Console.WriteLine("Sorted set value: {0}", JsonConvert.SerializeObject(sortedSet));

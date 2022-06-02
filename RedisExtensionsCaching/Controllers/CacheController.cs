@@ -15,7 +15,6 @@ namespace RedisExtensionsCaching.Controllers
         }
 
         [HttpDelete]
-        [Route("{authorId}")]
         public async Task<IActionResult> RemoveCache(string cacheKey)
         {
             await _cache.RemoveAsync(cacheKey);
